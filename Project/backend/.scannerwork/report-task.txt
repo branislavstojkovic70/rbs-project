@@ -1,0 +1,6 @@
+projectKey=golang_rbs
+serverUrl=http://localhost:9000
+serverVersion=10.5.0.89998
+dashboardUrl=http://localhost:9000/dashboard?id=golang_rbs
+ceTaskId=78d6e77e-7c8b-4c25-8f85-1c224d67208f
+ceTaskUrl=http://localhost:9000/api/ce/task?id=78d6e77e-7c8b-4c25-8f85-1c224d67208f

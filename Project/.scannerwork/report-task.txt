@@ -1,0 +1,6 @@
+projectKey=sonar_go_analysys
+serverUrl=http://localhost:9000
+serverVersion=10.5.0.89998
+dashboardUrl=http://localhost:9000/dashboard?id=sonar_go_analysys
+ceTaskId=440505b0-315e-4a6b-8ab5-ad64295b0b8f
+ceTaskUrl=http://localhost:9000/api/ce/task?id=440505b0-315e-4a6b-8ab5-ad64295b0b8f
