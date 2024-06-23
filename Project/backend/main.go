@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "log"
+    "net/http"
     "os"
     "path/filepath"
     "github.com/joho/godotenv"
@@ -32,5 +33,9 @@ func main() {
         log.Fatalf("Failed to connect to Consul: %v", err)
     }
     fmt.Println("Connected to Consul")
+    http.HandleFunc("/acl", handleACL)
+
+    fmt.Println("Server is running on port 8080")
+    log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
