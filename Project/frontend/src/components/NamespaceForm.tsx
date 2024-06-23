@@ -25,7 +25,6 @@ const NamespaceForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" name="namespace" placeholder="Namespace" onChange={handleChange} />
-      {/* Additional inputs for relations can be added here */}
       <button type="submit">Create Namespace</button>
     </form>
   );

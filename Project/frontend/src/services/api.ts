@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { ACL, Namespace } from '../types';
 
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // postavite vašu baznu URL adresu
+  baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 export const createACL = async (acl: ACL) => {
