@@ -126,7 +126,7 @@
             },
             "vertices": [
               {
-                "x": 400,
+                "x": 450,
                 "y": 90
               }
             ]
@@ -170,6 +170,10 @@
               "cell": "4850cb23-4ca4-4c12-afb4-67a903ba0f52"
             },
             "vertices": [
+              {
+                "x": 620,
+                "y": 220
+              },
               {
                 "x": 640,
                 "y": 320
@@ -330,8 +334,8 @@
                 "text": "User"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -345,9 +349,23 @@
               "description": "Frontend",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "710d37ff-0bc0-4fdf-9710-940400b033a2",
+                  "title": "Malicious request",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker can impersonate a User and send malicious requests.",
+                  "mitigation": "Implement strong user authentication and access control to reduce opportunities for impersonation and privilege escalation.\nImplement detailed logging and auditing to enable monitoring and verification of user actions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -364,8 +382,8 @@
                 "text": "Web Server"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -379,12 +397,78 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "4057d71b-bd7f-4d6e-9fe6-51ba15a09252",
+                  "title": "Transit data attack threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "(Web Post Request (HTTP), HTTP Response) between the user and the web server can be modified if it is not encrypted. An attacker can intercept and modify data in transit.",
+                  "mitigation": "Ensure that all data in transit is encrypted using TLS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "52842057-bf43-4384-9a80-d4932851d14e",
+                  "title": "Inadequate Logging and Auditing",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "The Web Server should have appropriate logging and auditing to prevent denial of actions by users or attackers. The lack of these mechanisms allows users or attackers to deny their activities.",
+                  "mitigation": "Implement detailed logging and auditing to enable monitoring and verification of user actions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "b6a1f3d7-615d-46f1-85f6-ef0ed42294a6",
+                  "title": "Unencrypted Data Transmission",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Data Flow can reveal sensitive information if communication is not encrypted. Attackers can eavesdrop on traffic between users and web servers.",
+                  "mitigation": "Ensure that all data in transit is encrypted using TLS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "348ed95d-b431-4450-bbb4-066228924803",
+                  "title": "Denial of Service (DoS) Attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Web Server can be the target of a DoS attack, where attackers can flood the server with requests, thereby denying legitimate access to users.",
+                  "mitigation": "Traffic Management: Use load balancers and rate limiters to manage incoming traffic and mitigate the impact of volumetric attacks.\nNetwork Security: Deploy firewalls and intrusion detection/prevention systems (IDPS) to filter out malicious traffic.\nResource Scaling: Scale infrastructure resources (such as servers and bandwidth) to handle sudden spikes in traffic.\nDDoS Protection Services: Consider using specialized DDoS protection services that can detect and mitigate attacks in real-time.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                },
+                {
+                  "id": "ae0767ee-997f-47b8-84f6-3fc8958dc924",
+                  "title": "Privilege Escalation Attack on Web Server",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attackers target the Web Server with the goal of escalating their privileges, gaining access to resources and capabilities beyond their authorized permissions.",
+                  "mitigation": "Assign minimal privileges necessary for users and processes to perform their functions, reducing the impact of potential privilege escalation.\n Keep software and applications on the Web Server up to date with security patches to mitigate known vulnerabilities.\nMonitor server activities, log access attempts, and set up alerts for suspicious activities or unauthorized privilege escalations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -401,11 +485,13 @@
                 "text": "Level DB"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -419,13 +505,40 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "031d784a-f287-4529-a8bd-a180e5f70f78",
+                  "title": "Data Disclosure",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Data can be exposed if it is not adequately protected.",
+                  "mitigation": "Implement robust access controls and authentication mechanisms to restrict access to sensitive data.\nEncrypt sensitive information both at rest (stored data) and in transit (data being transmitted).\nRegularly audit and monitor access to sensitive data to detect unauthorized access or anomalies.\nTrain employees and users on data protection best practices and awareness.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "0a6db040-bdc1-429d-b4a0-3217b08e6b5c",
+                  "title": "Resource Exhaustion Attack on LevelDB",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Level DB can be the target of attacks that can exhaust database resources, thus slowing down or preventing access to data.",
+                  "mitigation": " Implement controls to limit the rate of requests or queries to LevelDB, preventing overload from excessive traffic.\nSet up monitoring systems to detect unusual spikes in database activity or resource consumption, triggering alerts for timely intervention.\nOptimize LevelDB configurations and performance parameters to handle peak loads more efficiently and resist resource exhaustion attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -466,11 +579,13 @@
                 "text": "Consul"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -484,13 +599,40 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "05b5a96c-2dae-48fd-9a55-baeedcc13eb1",
+                  "title": "Security Risks to Consul",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attackers may attempt to modify or tamper with data stored in Consul, such as service configurations or key-value pairs, leading to operational disruptions or unauthorized access.",
+                  "mitigation": "Configure strict access controls and authentication mechanisms for Consul APIs and user interfaces to prevent unauthorized access.\nEncrypt data stored in Consul to protect it from unauthorized disclosure or tampering.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "49732129-e507-4b98-9c11-90bdf33a5656",
+                  "title": "Security Risks to Consul [Information disclosure]",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": " Vulnerabilities in Consul could potentially expose sensitive information, such as credentials or configuration details, to unauthorized parties.",
+                  "mitigation": " Conduct regular security audits and vulnerability assessments of Consul configurations and deployments.\n Encrypt data stored in Consul to protect it from unauthorized disclosure or tampering.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -581,8 +723,8 @@
             },
             "visible": true,
             "shape": "td-text-block",
-            "id": "572d99ab-00e4-4aca-af0f-6992ef5ec11b",
             "zIndex": 20,
+            "id": "572d99ab-00e4-4aca-af0f-6992ef5ec11b",
             "data": {
               "type": "tm.Text",
               "name": "Namespace Data Write",
@@ -595,6 +737,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 21
   }
 }
