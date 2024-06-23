@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  leveldb-server:
+    image: cardial/leveldbreader:latest
+    container_name: leveldb-server
+    ports:
+      - "2012:2012"
+    volumes:
+      - ./data/leveldb:/opt/app/db
+    environment:
+      leveldb_path: /opt/app/db
+      leveldb_host: 0.0.0.0
+      leveldb_port: 2012
+      leveldb_keyEncoding: utf8
+      leveldb_valueEncoding: json
+      leveldb_defaultTTL: 0
+      leveldb_checkFrequency: 50
+    networks:
+      - app-network
+
+  consul:
+    image: hashicorp/consul:latest
+    container_name: consul
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+      CONSUL_LOCAL_CONFIG: '{"leave_on_terminate": true}'
+    command: agent -server -client=0.0.0.0 -bind=0.0.0.0 -bootstrap-expect=1 -ui -retry-join=127.0.0.1 -dns-port=8600 -serf-lan-port=8301
+    volumes:
+      - ./data/consul:/consul/data
+      - ./config/consul:/consul/config
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+      - "8301:8301"
+      - "8301:8301/udp"
+      - "8302:8302"
+      - "8302:8302/udp"
+      - "8300:8300"
+    networks:
+      - app-network
+
+  consul-client:
+    image: hashicorp/consul:latest
+    container_name: consul-client
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+      CONSUL_LOCAL_CONFIG: '{"leave_on_terminate": true}'
+    command: agent -client=0.0.0.0 -bind=0.0.0.0 -retry-join=127.0.0.1 -dns-port=8601 -serf-lan-port=8303
+    volumes:
+      - ./data/consul-client:/consul/data
+      - ./config/consul-client:/consul/config
+    ports:
+      - "8501:8501"
+      - "8601:8601/udp"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
