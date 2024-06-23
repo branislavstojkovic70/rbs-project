@@ -1,0 +1,7 @@
+Za pokretanje codea:
+go run main.go
+go run main.go model.go 
+
+Za skidanje biblioteka koje su u importu:
+go mod tidy
+
